@@ -2,9 +2,9 @@
 
 A production-ready RESTful API built with Go and the Gin framework, featuring enterprise-grade architecture, comprehensive authentication, SMS integration with asynchronous processing, and cloud-native deployment capabilities.
 
-[![CI/CD Pipeline](https://github.com/your-org/savannah-backend/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/your-org/savannah-backend/actions/workflows/ci-cd.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/your-org/savannah-backend)](https://goreportcard.com/report/github.com/your-org/savannah-backend)
-[![Coverage](https://codecov.io/gh/your-org/savannah-backend/branch/main/graph/badge.svg)](https://codecov.io/gh/your-org/savannah-backend)
+[![CI/CD Pipeline](https://github.com/jmukavana/savannah-backend/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/jmukavana/savannah-backend/actions/workflows/ci-cd.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jmukavana/savannah-backend)](https://goreportcard.com/report/github.com/jmukavana/savannah-backend)
+[![Coverage](https://codecov.io/gh/jmukavana/savannah-backend/branch/main/graph/badge.svg)](https://codecov.io/gh/jmukavana/savannah-backend)
 
 ## 🏗️ Architecture Overview
 
@@ -144,8 +144,8 @@ backend/
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd backend
+   git clone https://github.com/jmukavana/savannah-backend.git
+   cd savannah-backend
    ```
 
 2. Install dependencies:

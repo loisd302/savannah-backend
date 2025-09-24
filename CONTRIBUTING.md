@@ -35,7 +35,7 @@ This project adheres to a code of conduct that ensures a welcoming environment f
 
 1. **Fork and Clone**
    ```bash
-   git clone https://github.com/your-username/savannah-backend.git
+   git clone https://github.com/jmukavana/savannah-backend.git
    cd savannah-backend
    ```
 

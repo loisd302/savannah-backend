@@ -199,7 +199,7 @@ This project demonstrates mastery of:
 ### **Local Development**
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/savannah-backend.git
+git clone https://github.com/jmukavana/savannah-backend.git
 cd savannah-backend
 
 # Start dependencies
@@ -269,7 +269,7 @@ This project showcases enterprise-level software engineering practices and can s
 
 - **GitHub Issues**: For bug reports and feature requests
 - **Discussions**: For questions and community support
-- **Email**: [your-email@domain.com] for private inquiries
+- **Email**: [jmukavana@github.com] for private inquiries
 
 ---
 
