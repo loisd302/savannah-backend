@@ -1,0 +1,193 @@
+# Default values for savannah-backend
+replicaCount: 2
+
+image:
+  repository: savannah-backend
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: 
+  fsGroup: 2000
+
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: api.savannah.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+# Application Configuration
+app:
+  environment: "production"
+  logLevel: "info"
+  
+  # OIDC Configuration (from secrets)
+  oidc:
+    issuerURL: ""
+    clientID: ""
+    redirectURL: "https://api.savannah.com/auth/callback"
+    scopes: "profile,email,customers:read,customers:write,orders:read,orders:write"
+  
+  # SMS Configuration (from secrets)
+  sms:
+    baseURL: "https://api.africastalking.com/version1"
+    isSandbox: false
+    retryLimit: 3
+
+# PostgreSQL Configuration
+postgresql:
+  enabled: true
+  auth:
+    postgresPassword: ""
+    username: "backend_user"
+    password: ""
+    database: "backend_prod"
+  primary:
+    persistence:
+      enabled: true
+      size: 10Gi
+    resources:
+      limits:
+        cpu: 500m
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 256Mi
+
+# Redis Configuration  
+redis:
+  enabled: true
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: true
+      size: 2Gi
+    resources:
+      limits:
+        cpu: 200m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+# External services (if not using built-in)
+externalDatabase:
+  enabled: false
+  host: ""
+  port: 5432
+  database: ""
+  username: ""
+  
+externalRedis:
+  enabled: false
+  host: ""
+  port: 6379
+  password: ""
+
+# Secrets (should be created separately)
+secrets:
+  database:
+    name: "backend-db-secret"
+    passwordKey: "password"
+  redis:
+    name: "backend-redis-secret" 
+    passwordKey: "password"
+  oidc:
+    name: "backend-oidc-secret"
+    clientSecretKey: "client-secret"
+  sms:
+    name: "backend-sms-secret"
+    apiKeyKey: "api-key"
+    usernameKey: "username"
+    shortcodeKey: "shortcode"
+
+# Health checks
+healthCheck:
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: http
+    initialDelaySeconds: 30
+    periodSeconds: 30
+    timeoutSeconds: 10
+    failureThreshold: 3
+  
+  readinessProbe:
+    httpGet:
+      path: /health
+      port: http  
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+
+# Monitoring
+monitoring:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    interval: 30s
+    scrapeTimeout: 10s
+    path: /metrics
+
+# Migration Job
+migration:
+  enabled: true
+  image:
+    repository: savannah-backend
+    tag: "latest"
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
