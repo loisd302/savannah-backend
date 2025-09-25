@@ -10,20 +10,26 @@ import (
 
 // SetupSwaggerRoutes sets up Swagger documentation routes
 func SetupSwaggerRoutes(router *gin.Engine) {
-	// Swagger UI endpoint
-	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	// OpenAPI JSON endpoint (serve at standard swagger.json path)
+	router.GET("/swagger.json", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.String(http.StatusOK, swaggerSpec)
+	})
+	
+	// Also serve at custom path for backward compatibility
+	router.GET("/api/openapi.json", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.String(http.StatusOK, swaggerSpec)
+	})
+	
+	// Swagger UI endpoint with custom URL configuration
+	url := ginSwagger.URL("/swagger.json") // The url pointing to API definition
+	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 	
 	// API documentation redirect
 	router.GET("/docs", func(c *gin.Context) {
 		c.Redirect(http.StatusPermanentRedirect, "/docs/index.html")
 	})
-	
-	// OpenAPI JSON endpoint
-	router.GET("/api/openapi.json", func(c *gin.Context) {
-		c.Header("Content-Type", "application/json")
-		c.String(http.StatusOK, swaggerSpec)
-	})
-}
 
 // swaggerSpec contains the OpenAPI 3.0 specification
 const swaggerSpec = `{

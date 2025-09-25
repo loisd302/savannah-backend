@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"backend/internal/auth"
+	"backend/internal/docs"
 	"backend/internal/jobs"
 	"backend/internal/services"
 	"backend/pkg/config"
@@ -109,6 +110,9 @@ func main() {
 	router.Use(middleware.Logger())
 	router.Use(middleware.CORS())
 	router.Use(gin.Recovery())
+
+	// Setup Swagger documentation routes
+	docs.SetupSwaggerRoutes(router)
 
 	// Health check endpoint
 	router.GET("/health", func(c *gin.Context) {
